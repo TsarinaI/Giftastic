@@ -1,0 +1,8 @@
+set up variables
+-topic for giphy (array)
+-queryURL for giphy (as a variable)
+
+set up functions
+-on the click, gather the info that they entered and push it into the array
+-also on the click, use the giphy API to search the top 5 results of that dessert 
+-display those giphs
