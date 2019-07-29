@@ -8,7 +8,7 @@ $(document).ready(function () {
     function populateButtons(dessertsArray, classToAdd, areaToAddTo) {
         $(areaToAddTo).empty();
 
-        for (let i = 0; i < dessertsArray.length; i++) {
+        for (var i = 0; i < dessertsArray.length; i++) {
             var searchedGif = $("<button>");
             searchedGif.addClass(classToAdd);
             searchedGif.attr("data-type", dessertsArray[i]);
@@ -19,12 +19,11 @@ $(document).ready(function () {
     }
 
     $(document).on("click", ".searchButton", function () {
-        $("#desserts").empty();
-        $(".searchButton").removeClass("active");
-        $(this).addClass("active");
+        $(".gifs").empty();
+        
 
         var type = $(this).attr("data-type");
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q" + type + "&api_key=fLSK8kQLL6eVTpieZ7yy7EQ3fJa2HkPs" + "&limit=5";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + type + "&api_key=fLSK8kQLL6eVTpieZ7yy7EQ3fJa2HkPs" + "&limit=5";
 
         $.ajax({
             url: queryURL,
@@ -53,14 +52,14 @@ $(document).ready(function () {
                     dessertsDiv.append(p);
                     dessertsDiv.append(dessertsImg);
 
-                    $("#desserts").append(dessertsDiv);
+                    $(".gifs").append(dessertsDiv);
                 }
             });
 
         $.ajax()
     })
 
-    populateButtons(dessertsArray, ".searchButton", "#desserts");
+    populateButtons(dessertsArray, "searchButton", "#desserts");
 
     $(document).on("click", ".desserts-image", function () {
 
@@ -80,11 +79,11 @@ $(document).ready(function () {
         event.preventDefault();
         var newDessert = $("input").eq(0).val();
 
-        if (newDessert.length > 2) {
-            desserts.push(newDessert);
+        if (newDessert.length) {
+            dessertsArray.push(newDessert);
         }
 
-        populateButtons(dessertsArray, ".searchButton", "#desserts");
+        populateButtons(dessertsArray, "searchButton", "#desserts");
     });
 
 })
